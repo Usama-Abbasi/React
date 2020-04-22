@@ -1,6 +1,6 @@
 import React from 'react';
-import {Card, CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstrap';
-
+import {Card, CardImg,CardImgOverlay,CardText,CardBody,CardTitle,BreadcrumbItem,Breadcrumb} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 
 
@@ -58,6 +58,17 @@ import {Card, CardImg,CardImgOverlay,CardText,CardBody,CardTitle} from 'reactstr
         if(props.dish!=null){ 
             
             return (<div className="container">
+                <div className="row">
+                    <Breadcrumb>
+
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>                
+                </div>
             <div className='row'>  
                         <div className="col-12 col-md-5 m-1">
                         <RenderDish dish={props.dish}/>
