@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import { Navbar,NavbarBrand} from 'reactstrap';
-import Menu from './component/MenuComponent';
+import Menu from './component/MainComponent';
+import {BrowserRouter} from 'react-router-dom'; 
 import './App.css';
-import {DISHES} from './Shared/dishes';
+import Main from './component/MainComponent';
 
 class  App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      dishes:DISHES
-    };
-  }
+  
 
   render(){
-    return(    
+    
+    return( 
+      <BrowserRouter>   
       <div>
-      <Navbar dark color ="primary">
-        <div className="conatainer">
-          <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-        </div>
-      </Navbar>
-      <Menu dishes={this.state.dishes} />
+      
+      <Main/>
     </div>
+    </BrowserRouter>
+
    );
  }
 }
