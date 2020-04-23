@@ -1,4 +1,4 @@
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron } from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron ,Button,Modal,ModalHeader,ModalBody} from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import React, { Component } from 'react';
 
@@ -7,8 +7,10 @@ class Header extends Component {
         super(props);
     
         this.toggleNav = this.toggleNav.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
         this.state = {
-          isNavOpen: false
+          isNavOpen: false,
+          isModalOpen:false
         };
       }
 
@@ -16,6 +18,11 @@ class Header extends Component {
         this.setState({
           isNavOpen: !this.state.isNavOpen
         });
+      }
+      toggleModal(){
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+          });
       }
 
     render() {
@@ -53,6 +60,12 @@ class Header extends Component {
                         </div>
                     </div>
                 </Jumbotron>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+
+                    </ModalBody>
+                </Modal>
             </div>
         );
     }
