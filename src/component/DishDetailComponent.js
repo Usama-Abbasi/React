@@ -24,8 +24,9 @@ class CommentForm extends Component{
           });
         }
         handleSubmit(values) {
-            console.log('Current State is: ' + JSON.stringify(values));
-            alert('Current State is: ' + JSON.stringify(values));
+            //console.log('Current State is: ' + JSON.stringify(values));
+            //alert('Current State is: ' + JSON.stringify(values));
+            this.props.addComment(this.props.dishId, values.rating, values.name, values.message);
             // event.preventDefault();
         }
        
@@ -118,7 +119,7 @@ class CommentForm extends Component{
         
     
 
-    function RenderComment({comments}){
+    function RenderComment({comments,addComment,dishId}){
         if(comments!=null){
             const coms=comments.map((comment)=>{
                 return (
@@ -134,7 +135,7 @@ class CommentForm extends Component{
                     <div>
                     <h4>Comments</h4>
                     <ul className='list-unstyled'>{coms}</ul>
-                    <CommentForm/>
+                    <CommentForm dishId={dishId} addComment={addComment}/>
                     </div>
                     
             )
@@ -168,7 +169,9 @@ class CommentForm extends Component{
                         </div>
                         
                         <div className="col-12 col-md-5 m-1">
-                            <RenderComment comments={props.comments}/>
+                            <RenderComment comments={props.comments}
+                            addComment={props.addComment}
+                            dishId={props.dish.id}/>
                         </div>
                         </div>
                         </div>
