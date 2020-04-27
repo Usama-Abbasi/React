@@ -5,6 +5,7 @@ import {Button,Modal,ModalHeader,ModalBody,Form,FormGroup,Label ,Input} from 're
 import {Link} from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../Shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -106,6 +107,11 @@ class CommentForm extends Component{
         if(dish!=null){
             details=
             <div>
+                <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
                     <Card>
                     <CardImg width='100%' src={baseUrl+dish.image} alt={dish.name} />
                     <CardBody>
@@ -114,6 +120,7 @@ class CommentForm extends Component{
                     </CardBody>
 
                 </Card>
+                </FadeTransform>
                 </div>
         }
         else{
@@ -126,15 +133,18 @@ class CommentForm extends Component{
 
     function RenderComment({comments,postComment,dishId}){
         if(comments!=null){
+         
             const coms=comments.map((comment)=>{
                 return (
-                    
+                    <Fade in >
                     <li key={comment.id}>
                 <p>{comment.comment}</p>
                 <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US',{year:'numeric',month:'short',day:'2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                </li>   
+                </li> 
+                </Fade>  
                 )
             });
+            
     
             return (
                     <div>
