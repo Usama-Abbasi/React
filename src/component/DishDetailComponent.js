@@ -4,7 +4,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import {Button,Modal,ModalHeader,ModalBody,Form,FormGroup,Label ,Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import { Loading } from './LoadingComponent';
-
+import { baseUrl } from '../Shared/baseUrl';
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -42,8 +42,9 @@ class CommentForm extends Component{
         <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
        <ModalBody>
             <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-                <Row className="form-group m-1">
+                <Row className="form-group ">
                 <Label htmlFor="rating" md={2}>Rating</Label>
+                <Col md={12}>
                 <Control.select model=".rating" name="rating"
                                         className="form-control">
                                         <option>1</option>
@@ -53,9 +54,11 @@ class CommentForm extends Component{
                                         <option>5</option>
                                         <option>6</option>
                                     </Control.select>
+                                    </Col>
                 </Row>
-                <Row className="form-group m-1">
-                    <Label htmlFor="name">Your Name</Label>
+                <Row className="form-group ">
+                    <Label htmlFor="name" md={6}>Your Name</Label>
+                    <Col md={12}>
                     <Control.text model=".name" id="name" name="name"
                                         placeholder="Your Name"
                                         className="form-control"
@@ -72,22 +75,23 @@ class CommentForm extends Component{
                                             maxLength: 'Must be 15 characters or less'
                                         }}
                                      />
+                                     </Col>
                 </Row>
-                <Row className="form-group m-1">
+                <Row className="form-group ">
                 <Label htmlFor="name" md={2}>Comment</Label>
-                
+                <Col md={12}>
                 <Control.textarea model=".message" id="message" name="message"
                                         rows="10"
                                         className="form-control" />
                                         
-                                        
+                                        </Col>                     
                 </Row>
-                <Row className="form-group m-1">
-                                
+                <Row className="form-group ">
+                                <Col md={12}>
                                     <Button type="submit" color="primary">
                                     Submit
                                     </Button>
-                                
+                                    </Col>   
                             </Row>
             </LocalForm>
        </ModalBody>
@@ -103,7 +107,7 @@ class CommentForm extends Component{
             details=
             <div>
                     <Card>
-                    <CardImg width='100%' src={dish.image} alt={dish.name} />
+                    <CardImg width='100%' src={baseUrl+dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
